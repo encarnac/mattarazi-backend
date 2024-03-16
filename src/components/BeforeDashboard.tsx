@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Banner } from 'payload/components'
 
-const BeforeDashboard: React.FC = () => {
+const BeforeDashboard = () => {
   return (
     <div>
       {/* <Banner type="success"> */}
-        <h1>Welcome to Mattarazi Uomo!</h1>
+        <h2><b>Mattarazi Uomo's Dashboard</b></h2>
       {/* </Banner> */}
       {/* How to Use:
       <ul >

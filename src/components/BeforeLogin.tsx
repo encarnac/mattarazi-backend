@@ -1,11 +1,12 @@
 import React from 'react'
+import "./components.css";
 
-const BeforeLogin: React.FC = () => {
+const BeforeLogin = () => {
   return (
-    <div>
-      <h3>Welcome, Mattarazi Uomo!</h3>
+    <div className='before-login'>
+      <h3>Welcome to Mattarazi Uomo</h3>
       <p>
-        {'Log in to manage the products on your website.'}
+        {'Login to manage your website and catalog'}
       </p>
     </div>
   )
