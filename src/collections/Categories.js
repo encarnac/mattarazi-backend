@@ -1,4 +1,6 @@
 import { CollectionConfig } from "payload/types";
+import { isAdminOrDev } from "../access/isAdminOrDev";
+import { returnToTable } from "../hooks/returnToTable";
 
 const Categories = {
   slug: "categories",
@@ -12,7 +14,11 @@ const Categories = {
   },
   access: {
     read: () => true,
+    create: isAdminOrDev,
+    update: isAdminOrDev,
+    delete: isAdminOrDev,
   },
+  // hooks: { afterChange: [returnToTable] },
   fields: [
     {
       name: "name",

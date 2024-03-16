@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import { isAdminOrDev } from "../access/isAdminOrDev";
 
 const Materials = {
   slug: "materials",
@@ -12,6 +13,9 @@ const Materials = {
   },
   access: {
     read: () => true,
+    create: isAdminOrDev,
+    update: isAdminOrDev,
+    delete: isAdminOrDev,
   },
   fields: [
     {
