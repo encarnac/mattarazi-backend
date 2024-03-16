@@ -8,7 +8,7 @@ const Users = {
   auth: true,
   admin: {
     useAsTitle: "email",
-    group: "Admin Permissions",
+    group: "Access Controls",
   },
   access: {
     read: () => {
