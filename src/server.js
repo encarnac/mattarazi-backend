@@ -3,12 +3,12 @@ import payload from "payload";
 
 require("dotenv").config();
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
-// Redirect root to Admin panel
-app.get("/", (_, res) => {
-  res.redirect("/admin");
-});
+// // Redirect root to Admin panel
+// app.get("/", (_, res) => {
+//   res.redirect("/admin");
+// });
 
 const start = async () => {
   // Initialize Payload
