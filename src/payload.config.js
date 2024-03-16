@@ -33,12 +33,11 @@ export default buildConfig({
       beforeDashboard: [BeforeDashboard],
     },
   },
-  cors: process.env.WHITELIST_ORIGINS
-    ? process.env.WHITELIST_ORIGINS.split(",")
-    : [],
-  csrf: process.env.WHITELIST_ORIGINS
-    ? process.env.WHITELIST_ORIGINS.split(",")
-    : [],
+  cors: [process.env.NEXT_PUBLIC_EXTERNAL_URL || ""].filter(Boolean),
+  csrf: [
+    process.env.NEXT_PUBLIC_SERVER_URL,
+    process.env.NEXT_PUBLIC_EXTERNAL_URL || "",
+  ].filter(Boolean),
 
   editor: slateEditor({}),
   collections: [
