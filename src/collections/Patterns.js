@@ -7,7 +7,7 @@ const Patterns = {
     useAsTitle: "name",
     group: "Form Options",
     pagination: { defaultLimit: 25 },
-    defaultColumns: ["name"],
+    defaultColumns: ["name", "createdAt"],
     description:
       "Pattern options refer to fabric design. Used in the Product form, under the 'color' drop-down selector.",
   },

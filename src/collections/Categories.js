@@ -8,7 +8,7 @@ const Categories = {
     useAsTitle: "name",
     group: "Form Options",
     pagination: { defaultLimit: 25 },
-    defaultColumns: ["name"],
+    defaultColumns: ["name", "createdAt"],
     description:
       "Category options are used in the Product form, under the 'categories' drop-down selector.",
   },

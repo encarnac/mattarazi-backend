@@ -7,7 +7,7 @@ const Materials = {
     useAsTitle: "name",
     group: "Form Options",
     pagination: { defaultLimit: 25 },
-    defaultColumns: ["name"],
+    defaultColumns: ["name", "createdAt"],
     description:
       "Material options refer to the type of fabric. Used in the Product form, under the 'color' drop-down selector.",
   },

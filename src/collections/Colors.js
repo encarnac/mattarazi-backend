@@ -7,7 +7,7 @@ const Colors = {
     useAsTitle: "name",
     group: "Form Options",
     pagination: { defaultLimit: 25 },
-    defaultColumns: ["name"],
+    defaultColumns: ["name", "createdAt"],
     description:
       "Color options refer to the general color. Used in the Product form, under the 'color' drop-down selector.",
   },
