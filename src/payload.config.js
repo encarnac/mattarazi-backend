@@ -6,7 +6,8 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { buildConfig } from "payload/config";
 
-import Logo from "./components/Logo";
+import Logo from "./graphics/Logo.jsx";
+import Icon from "./graphics/Icon.jsx";
 import BeforeDashboard from "./components/BeforeDashboard";
 import BeforeLogin from "./components/BeforeLogin";
 
@@ -22,11 +23,15 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
+    meta: {
+      titleSuffix: "- Mattarazi Uomo",
+      favicon: "/assets/favicon.svg",
+    },
     components: {
-      // graphics: {
-      //   Icon: Logo,
-      //   Logo: Logo,
-      // },
+      graphics: {
+        Logo,
+        Icon,
+      },
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       beforeLogin: [BeforeLogin],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
