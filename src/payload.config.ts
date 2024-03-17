@@ -1,13 +1,12 @@
 // @ts-nocheck
 import path from "path";
 
-import { payloadCloud } from "@payloadcms/plugin-cloud";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { slateEditor } from "@payloadcms/richtext-slate";
-import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
+import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
+import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { buildConfig } from "payload/config";
-
 
 import Logo from "./graphics/Logo.jsx";
 import Icon from "./graphics/Icon.jsx";
@@ -23,27 +22,28 @@ import Models from "./collections/Models.js";
 import Patterns from "./collections/Patterns.js";
 import Products from "./collections/Products.js";
 
-const mockModulePath = path.resolve(__dirname, 'mocks/emptyObject.js')
+const mockModulePath = path.resolve(__dirname, "mocks/emptyObject.js");
 
-import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
-
-// const storageAdapter = s3Adapter({
-//   config: {
-//     endpoint: process.env.S3_ENDPOINT,
-//     region: process.env.S3_REGION,
-//     credentials: {
-//       accessKeyId: process.env.S3_ACCESS_KEY_ID,
-//       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-//     },
-//   },
-//   bucket: process.env.S3_BUCKET,
-// })
-
+const storageAdapter = s3Adapter({
+  config: {
+    endpoint: process.env.S3_ENDPOINT,
+    region: process.env.S3_REGION,
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY,
+      secretAccessKey: process.env.S3_SECRET_KEY,
+    },
+  },
+  bucket: process.env.S3_BUCKET_NAME,
+});
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: "- Mattarazi Uomo",
+      favicon: "/assets/favicon.svg",
+    },
     bundler: webpackBundler(),
     webpack: (config) => {
       return {
@@ -53,15 +53,11 @@ export default buildConfig({
           alias: {
             ...config.resolve.alias,
             fs: mockModulePath,
-            // util: false,
-            // os: false,
+            // util: mockModulePath,
+            // os: mockModulePath,
           },
         },
-      }
-    },
-    meta: {
-      titleSuffix: "- Mattarazi Uomo",
-      favicon: "/assets/favicon.svg",
+      };
     },
     components: {
       graphics: {
@@ -94,14 +90,14 @@ export default buildConfig({
   graphQL: {
     disable: true,
   },
-   plugins: [
-  //  cloudStorage({
-  //     collections: {
-  //       media: {
-  //         storageAdapter,
-  //       },
-  //     },
-  //   }),
+  plugins: [
+    cloudStorage({
+      collections: {
+        media: {
+          adapter: storageAdapter,
+        },
+      },
+    }),
   ],
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,
