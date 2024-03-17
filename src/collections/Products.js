@@ -50,7 +50,6 @@ const Products = {
       name: "category",
       type: "relationship",
       relationTo: "categories",
-      hasMany: true,
       required: true,
     },
     {
@@ -67,14 +66,12 @@ const Products = {
           name: "color",
           type: "relationship",
           relationTo: "colors",
-          hasMany: true,
           required: true,
         },
         {
           name: "pattern",
           type: "relationship",
           relationTo: "patterns",
-          hasMany: true,
           required: true,
         },
         {
