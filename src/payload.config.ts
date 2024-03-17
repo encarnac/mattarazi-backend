@@ -5,7 +5,9 @@ import { payloadCloud } from "@payloadcms/plugin-cloud";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { slateEditor } from "@payloadcms/richtext-slate";
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
 import { buildConfig } from "payload/config";
+
 
 import Logo from "./graphics/Logo.jsx";
 import Icon from "./graphics/Icon.jsx";
@@ -16,11 +18,28 @@ import Users from "./collections/Users.js";
 import Categories from "./collections/Categories.js";
 import Colors from "./collections/Colors.js";
 import Materials from "./collections/Materials.js";
+import Media from "./collections/Media.js";
 import Models from "./collections/Models.js";
 import Patterns from "./collections/Patterns.js";
 import Products from "./collections/Products.js";
 
 const mockModulePath = path.resolve(__dirname, 'mocks/emptyObject.js')
+
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
+
+// const storageAdapter = s3Adapter({
+//   config: {
+//     endpoint: process.env.S3_ENDPOINT,
+//     region: process.env.S3_REGION,
+//     credentials: {
+//       accessKeyId: process.env.S3_ACCESS_KEY_ID,
+//       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+//     },
+//   },
+//   bucket: process.env.S3_BUCKET,
+// })
+
+
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
@@ -34,6 +53,8 @@ export default buildConfig({
           alias: {
             ...config.resolve.alias,
             fs: mockModulePath,
+            // util: false,
+            // os: false,
           },
         },
       }
@@ -62,6 +83,7 @@ export default buildConfig({
     Categories,
     Colors,
     Materials,
+    Media,
     Models,
     Patterns,
     Users,
@@ -72,7 +94,15 @@ export default buildConfig({
   graphQL: {
     disable: true,
   },
-  plugins: [payloadCloud()],
+   plugins: [
+  //  cloudStorage({
+  //     collections: {
+  //       media: {
+  //         storageAdapter,
+  //       },
+  //     },
+  //   }),
+  ],
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,
   }),

@@ -16,6 +16,7 @@ const Products = {
       "material",
     ],
     defaultColumns: [
+      "image",
       "article",
       "category",
       "model",
@@ -33,6 +34,12 @@ const Products = {
     delete: isAdminOrDev,
   },
   fields: [
+    {
+      name: "image", // required
+      type: "upload", // required
+      relationTo: "media", // required
+      required: true,
+    },
     {
       name: "article",
       type: "text",
