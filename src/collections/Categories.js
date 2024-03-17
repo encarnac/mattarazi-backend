@@ -1,6 +1,5 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
-import { returnToTable } from "../hooks/returnToTable";
 
 const Categories = {
   slug: "categories",
@@ -11,6 +10,11 @@ const Categories = {
     defaultColumns: ["name", "createdAt"],
     description:
       "Category options are used in the Product form, under the 'categories' drop-down selector.",
+    // components: {
+    //   edit: {
+    //     SaveButton: CustomSaveButton,
+    //   },
+    // },
   },
   access: {
     read: () => true,
