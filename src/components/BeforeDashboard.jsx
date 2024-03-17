@@ -1,12 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Banner } from 'payload/components'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Banner } from "payload/components";
 
 const BeforeDashboard = () => {
   return (
     <div>
       {/* <Banner type="success"> */}
-        <h2><b>Mattarazi Uomo's Dashboard</b></h2>
+      <h2>
+        <b>Mattarazi Uomo's Dashboard</b>
+      </h2>
       {/* </Banner> */}
       {/* How to Use:
       <ul >
@@ -19,7 +21,7 @@ const BeforeDashboard = () => {
         </li>
       </ul> */}
     </div>
-  )
-}
+  );
+};
 
-export default BeforeDashboard
+export default BeforeDashboard;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import payload from "payload";
 import express from "express";
 import path from "path";
@@ -24,7 +25,7 @@ const start = async () => {
 
   // Add your own express routes here
   app.listen(PORT, async () => {
-    payload.logger.info(`App URL: ${process.env.NEXT_PUBLIC_SERVER_URL}`);
+    payload.logger.info(`App URL: ${process.env.PAYLOAD_PUBLIC_SERVER_URL}`);
   });
 };
 

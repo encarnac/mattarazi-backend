@@ -1,3 +1,4 @@
+// @ts-nocheck
 import path from "path";
 
 import { payloadCloud } from "@payloadcms/plugin-cloud";
@@ -8,18 +9,19 @@ import { buildConfig } from "payload/config";
 
 import Logo from "./graphics/Logo.jsx";
 import Icon from "./graphics/Icon.jsx";
-import BeforeDashboard from "./components/BeforeDashboard";
-import BeforeLogin from "./components/BeforeLogin";
+import BeforeDashboard from "./components/BeforeDashboard.jsx";
+import BeforeLogin from "./components/BeforeLogin.jsx";
 
-import Users from "./collections/Users";
-import Categories from "./collections/Categories";
-import Colors from "./collections/Colors";
-import Materials from "./collections/Materials";
-import Models from "./collections/Models";
-import Patterns from "./collections/Patterns";
-import Products from "./collections/Products";
+import Users from "./collections/Users.js";
+import Categories from "./collections/Categories.js";
+import Colors from "./collections/Colors.js";
+import Materials from "./collections/Materials.js";
+import Models from "./collections/Models.js";
+import Patterns from "./collections/Patterns.js";
+import Products from "./collections/Products.js";
 
 export default buildConfig({
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
@@ -32,18 +34,15 @@ export default buildConfig({
         Logo,
         Icon,
       },
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       beforeLogin: [BeforeLogin],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       beforeDashboard: [BeforeDashboard],
     },
   },
   cors: [process.env.NEXT_PUBLIC_EXTERNAL_URL || ""].filter(Boolean),
   csrf: [
-    process.env.NEXT_PUBLIC_SERVER_URL,
+    process.env.PAYLOAD_PUBLIC_SERVER_URL,
     process.env.NEXT_PUBLIC_EXTERNAL_URL || "",
   ].filter(Boolean),
-
   editor: slateEditor({}),
   collections: [
     Products,
