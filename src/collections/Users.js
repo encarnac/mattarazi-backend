@@ -1,7 +1,5 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrDev } from "../access/isAdminOrDev";
 import { isDev } from "../access/isDev";
-import { isUser } from "../access/isUser";
 
 const Users = {
   slug: "users",
@@ -11,9 +9,6 @@ const Users = {
     group: "Access Controls",
   },
   access: {
-    read: () => {
-      return Boolean(isUser || isAdminOrDev);
-    },
     create: isDev,
     update: isDev,
     delete: isDev,
