@@ -17,7 +17,7 @@ import Users from "./collections/Users.js";
 import Categories from "./collections/Categories.js";
 import Colors from "./collections/Colors.js";
 import Materials from "./collections/Materials.js";
-import Media from "./collections/Media.js";
+import Photos from "./collections/Photos.js";
 import Models from "./collections/Models.js";
 import Patterns from "./collections/Patterns.js";
 import Products from "./collections/Products.js";
@@ -79,7 +79,7 @@ export default buildConfig({
     Categories,
     Colors,
     Materials,
-    Media,
+    Photos,
     Models,
     Patterns,
     Users,
@@ -93,7 +93,7 @@ export default buildConfig({
   plugins: [
     cloudStorage({
       collections: {
-        media: {
+        photos: {
           adapter: storageAdapter,
         },
       },

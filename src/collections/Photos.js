@@ -1,11 +1,10 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 
-const Media = {
-  slug: "media",
-  labels: { singular: "Media", plural: "Media" },
+const Photos = {
+  slug: "photos",
   admin: {
-    group: "Form Options",
+    group: "Manage Product Catalog",
     pagination: { defaultLimit: 25 },
     defaultColumns: [
       "filename",
@@ -30,10 +29,11 @@ const Media = {
   },
   fields: [
     {
-      name: "name",
+      name: "caption",
       type: "text",
+      unique: true,
     },
   ],
 };
 
-export default Media;
+export default Photos;

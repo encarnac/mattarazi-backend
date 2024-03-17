@@ -37,7 +37,7 @@ const Products = {
     {
       name: "image", // required
       type: "upload", // required
-      relationTo: "media", // required
+      relationTo: "photos", // required
       required: true,
     },
     {
