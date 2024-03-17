@@ -20,11 +20,24 @@ import Models from "./collections/Models.js";
 import Patterns from "./collections/Patterns.js";
 import Products from "./collections/Products.js";
 
+const mockModulePath = path.resolve(__dirname, 'mocks/emptyObject.js')
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
+    webpack: (config) => {
+      return {
+        ...config,
+        resolve: {
+          ...config.resolve,
+          alias: {
+            ...config.resolve.alias,
+            fs: mockModulePath,
+          },
+        },
+      }
+    },
     meta: {
       titleSuffix: "- Mattarazi Uomo",
       favicon: "/assets/favicon.svg",
