@@ -92,6 +92,7 @@ export default buildConfig({
   },
   plugins: [
     cloudStorage({
+      enabled: process.env.PAYLOAD_ENV === "production",
       collections: {
         photos: {
           adapter: storageAdapter,
