@@ -1,32 +1,27 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
-import { Props } from "payload/components/views/Cell";
+import { useListRelationships } from "payload/dist/admin/components/views/collections/List/RelationshipProvider";
+import "./components.css";
 
-export const ImageCell: React.FC<Props> = (props) => {
-  const [photoUrl, setPhotoUrl] = useState("");
-  const { cellData } = props;
+export const ImageCell = (props) => {
+  const { field, colIndex, collection, cellData, rowData } = props;
 
-  const photoId = cellData ? null : cellData;
+  const { getRelationships, documents } = useListRelationships();
 
   useEffect(() => {
-    const result = async () => {
-      try {
-        const req = await fetch(
-          `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/photos/${cellData}`
-        );
-        const data = await req.json();
-        console.log(data.url);
-        setPhotoUrl(data.url);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    result();
-  }, []);
+    getRelationships([
+      {
+        value: cellData,
+        relationTo: field.relationTo,
+      },
+    ]);
+  }, [getRelationships]);
 
   return (
-    <div className={`thumbnail`}>
-      <img src={photoUrl} alt="thumbnail" />
+    <div className="product-cell">
+      {documents?.[field.relationTo]?.[cellData]?.url && (
+        <img src={documents[field.relationTo][cellData]?.url}></img>
+      )}
     </div>
   );
 };

@@ -26,6 +26,8 @@ const Photos = {
     delete: isAdminOrDev,
   },
   upload: {
+    formatOptions: { format: "png", options: { compressionLevel: 3 } },
+    resizeOptions: { width: 300 },
     mimeTypes: ["image/*"],
   },
   fields: [
