@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
+import { ImageCell } from "../components/ImageCell";
 
 const Products = {
   slug: "products",
@@ -39,6 +40,11 @@ const Products = {
       type: "upload", // required
       relationTo: "photos", // required
       required: true,
+      admin: {
+        components: {
+          Cell: ImageCell,
+        },
+      },
     },
     {
       name: "article",

@@ -4,6 +4,7 @@ import { isAdminOrDev } from "../access/isAdminOrDev";
 const Photos = {
   slug: "photos",
   admin: {
+    // useAsTitle: "filename",
     group: "Manage Product Catalog",
     pagination: { defaultLimit: 25 },
     defaultColumns: [
