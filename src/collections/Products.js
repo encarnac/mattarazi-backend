@@ -8,14 +8,14 @@ const Products = {
     useAsTitle: "article",
     group: "Manage Product Catalog",
     pagination: { defaultLimit: 25 },
-    listSearchableFields: [
-      "article",
-      "category",
-      "model",
-      "color",
-      "pattern",
-      "material",
-    ],
+    // listSearchableFields: [
+    //   "article",
+    //   "category",
+    //   "model",
+    //   "color",
+    //   "pattern",
+    //   "material",
+    // ],
     defaultColumns: [
       "image",
       "article",
