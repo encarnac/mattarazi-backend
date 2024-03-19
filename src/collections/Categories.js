@@ -11,8 +11,9 @@ const Categories = {
     description:
       "Category options are used in the Product form, under the 'categories' drop-down selector.",
     // components: {
-    //   edit: {
-    //     SaveButton: CustomSaveButton,
+    //   views: {
+    //     Edit: CustomEditView,
+    //     List: MyCustomListView,
     //   },
     // },
   },
