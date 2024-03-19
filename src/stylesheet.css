@@ -91,3 +91,16 @@ a.btn:hover .btn__content .btn__icon {
   font-size: 1.33rem;
   color: rgb(141, 141, 141);
 }
+
+
+/* Selection Colors */
+::-moz-selection {
+  /* Code for Firefox */
+  color: #fff;
+  background: #c80a13df;
+}
+
+::selection {
+  color: #fff;
+  background: #c80a13df;
+}
