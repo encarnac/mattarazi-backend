@@ -1,0 +1,93 @@
+/* Table Content Sizing */
+.table th,
+.table td {
+  max-width: min-content;
+  min-width: min-content;
+  padding: .75rem;
+}
+
+.relationship-cell,
+.cell-image,
+.cell-article {
+  max-width: fit-content !important;
+  min-width: min-content;
+}
+
+/* Primary Buttons and Create/Edit/Delete Pills */
+.pill.pill--has-link.pill--has-action,
+.pill.delete-documents__toggle,
+.edit-many__toggle,
+.btn--style-primary,
+button#action-save {
+  background-color: #c8353c;
+  color: #fff;
+}
+
+.pill.pill--has-link.pill--has-action:hover,
+.pill.delete-documents__toggle:hover,
+.edit-many__toggle:hover,
+.btn--style-primary:not(.btn--disabled):hover,
+.btn--style-primary:not(.btn--disabled):focus-visible,
+button#action-save:hover {
+  background-color: #af2e35;
+  color: #fff;
+}
+
+/* Chevron Icon for Selected in Nav and Table */
+.nav__link-icon .icon--chevron .stroke,
+.sort-column__asc .icon--chevron .stroke,
+.sort-column__desc .icon--chevron .stroke {
+  stroke: #C80A15;
+}
+
+
+/* Add Button on Cards */
+a.btn .btn__content .btn__icon {
+  border-color: #C80A15;
+  color: #C80A15;
+}
+
+a.btn:hover .btn__content .btn__icon {
+  background-color: #C80A15;
+}
+
+/* Button on Logout Screen */
+.btn--style-secondary:focus:not(:focus-visible),
+.checkbox-input:not(.checkbox-input--read-only):active .checkbox-input__input,
+.checkbox-input:not(.checkbox-input--read-only):active input[type=checkbox],
+.checkbox-input:not(.checkbox-input--read-only):focus-within .checkbox-input__input,
+.checkbox-input:not(.checkbox-input--read-only):focus-within input[type=checkbox],
+.checkbox-input:not(.checkbox-input--read-only):focus .checkbox-input__input,
+.checkbox-input:not(.checkbox-input--read-only):focus input[type=checkbox],
+.radio-input input[type=radio]:focus+.radio-input__styled-radio {
+  box-shadow: inset 0 0 0 1px var(--theme-elevation-700), 0px 0px 1px 2px #ffb1b5 !important;
+}
+
+/* Side Bar */
+.nav-group__label {
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+}
+
+.nav-group__content {
+  padding-left: .5rem;
+}
+
+@media (max-width: 768px) {
+  .nav-group__label {
+    font-size: 1.85rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav nav a {
+    font-size: 1.5rem !important;
+  }
+}
+
+
+/* Dashboard  */
+.dashboard__label {
+  font-size: 1.33rem;
+  color: rgb(141, 141, 141);
+}

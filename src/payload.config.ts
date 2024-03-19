@@ -23,6 +23,7 @@ import Patterns from "./collections/Patterns.js";
 import Products from "./collections/Products.js";
 
 const mockModulePath = path.resolve(__dirname, "mocks/emptyObject.js");
+const styleSheet = path.resolve(__dirname, "./stylesheet.css");
 
 const storageAdapter = s3Adapter({
   config: {
@@ -44,6 +45,7 @@ export default buildConfig({
       titleSuffix: "- Mattarazi Uomo",
       favicon: "/assets/favicon.svg",
     },
+    css: styleSheet,
     bundler: webpackBundler(),
     webpack: (config) => {
       return {
