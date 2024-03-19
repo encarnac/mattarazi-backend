@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useListRelationships } from "payload/dist/admin/components/views/collections/List/RelationshipProvider";
 import "./components.css";
 
@@ -20,7 +21,13 @@ export const ImageCell = (props) => {
   return (
     <div className="product-cell">
       {documents?.[field.relationTo]?.[cellData]?.url && (
-        <img src={documents[field.relationTo][cellData]?.url}></img>
+        <Link
+          to={`/admin/collections/photos/${
+            documents?.[field.relationTo]?.[cellData]?.id
+          }`}
+        >
+          <img src={documents[field.relationTo][cellData]?.url} />
+        </Link>
       )}
     </div>
   );
