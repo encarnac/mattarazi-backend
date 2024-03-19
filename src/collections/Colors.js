@@ -5,7 +5,7 @@ const Colors = {
   slug: "colors",
   admin: {
     useAsTitle: "name",
-    group: "Form Options",
+    group: "Options",
     pagination: { defaultLimit: 25 },
     defaultColumns: ["name", "createdAt"],
     description:

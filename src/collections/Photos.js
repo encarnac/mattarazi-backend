@@ -5,7 +5,7 @@ const Photos = {
   slug: "photos",
   admin: {
     // useAsTitle: "filename",
-    group: "Manage Product Catalog",
+    group: "Product Catalog",
     pagination: { defaultLimit: 25 },
     defaultColumns: [
       "filename",

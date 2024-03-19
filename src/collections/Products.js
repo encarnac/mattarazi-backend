@@ -6,7 +6,7 @@ const Products = {
   slug: "products",
   admin: {
     useAsTitle: "article",
-    group: "Manage Product Catalog",
+    group: "Product Catalog",
     pagination: { defaultLimit: 25 },
     // listSearchableFields: [
     //   "article",
