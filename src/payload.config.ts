@@ -12,6 +12,7 @@ import Logo from "./graphics/Logo.jsx";
 import Icon from "./graphics/Icon.jsx";
 import BeforeDashboard from "./components/BeforeDashboard.jsx";
 import BeforeLogin from "./components/BeforeLogin.jsx";
+import CustomDashboardView from "./views/CustomDashboardView.jsx";
 
 import Users from "./collections/Users.js";
 import Categories from "./collections/Categories.js";
@@ -68,6 +69,7 @@ export default buildConfig({
       },
       beforeLogin: [BeforeLogin],
       beforeDashboard: [BeforeDashboard],
+      views: { Dashboard: CustomDashboardView },
     },
   },
   cors: [process.env.NEXT_PUBLIC_EXTERNAL_URL || ""].filter(Boolean),
