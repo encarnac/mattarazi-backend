@@ -1,5 +1,5 @@
 import React from "react";
-import "./graphics.css";
+import "./styles.css";
 
 const Icon = () => (
   <div className="icon">

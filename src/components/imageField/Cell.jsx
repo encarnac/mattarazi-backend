@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useListRelationships } from "payload/dist/admin/components/views/collections/List/RelationshipProvider";
-import "./components.css";
+import "./styles.css";
 
-export const CustomCell = (props) => {
+export const Cell = (props) => {
   const { field, colIndex, collection, cellData, rowData } = props;
 
   const { getRelationships, documents } = useListRelationships();

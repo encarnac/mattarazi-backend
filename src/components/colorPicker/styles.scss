@@ -1,0 +1,75 @@
+@import "~payload/scss";
+
+.add-color {
+  margin: 0;
+  padding: 0;
+  height: base(1.25) !important;
+  width: base(1.25) !important;
+  // border: $style-stroke-width-m solid #fff;
+}
+
+.color-picker-container {
+  width: 60px !important;
+  height: 60px !important;
+  padding: 0px !important;
+  border-radius: 50% !important;
+  border: $style-stroke-width-m solid #fff;
+  position: relative;
+  overflow: hidden !important;
+  margin-bottom: 12px !important;
+}
+
+input.color-picker-input {
+  width: 300px !important;
+  height: 300px !important;
+  padding: 0px !important;
+  position: absolute;
+  top: -4px;
+  left: -2px;
+}
+
+.custom-color-picker {
+  &__btn.btn {
+    margin: base(0.25);
+
+    &:first-of-type {
+      margin-left: unset;
+    }
+  }
+
+  &__input {
+    // Payload exports a mixin from the vars file for quickly applying formInput rules to the class for our input
+    @include formInput;
+  }
+
+  &__colors {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .error {
+    background-color: var(--theme-error-100);
+    border: 1px solid var(--theme-error-400);
+  }
+}
+
+.chip {
+  border-radius: 100%;
+  border: $style-stroke-width-m solid #fff;
+  height: base(1.25);
+  width: base(1.25);
+  margin-right: base(0.5);
+  box-shadow: none;
+  padding: 0;
+
+  &--selected {
+    box-shadow: 0 0 0 $style-stroke-width-m $color-red;
+  }
+
+  &--clickable {
+    cursor: pointer;
+  }
+}

@@ -17,7 +17,6 @@ const Categories = {
         Edit: {
           CreateNew: { Tab: CustomTabCreate },
         },
-        // List: CustomListView,
       },
     },
   },
@@ -37,7 +36,6 @@ const Categories = {
       hooks: {
         beforeValidate: [
           ({ value }) => {
-            // Trim whitespace and convert to lowercase
             return value.toLowerCase();
           },
         ],

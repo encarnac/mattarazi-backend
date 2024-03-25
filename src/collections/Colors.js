@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
+import colorField from "../components/colorPicker/config";
 
 const Colors = {
   slug: "colors",
@@ -9,7 +10,7 @@ const Colors = {
     group: "Options",
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
-    defaultColumns: ["name", "createdAt"],
+    defaultColumns: ["name", "sample", "createdAt"],
     description:
       "Color options refer to the general color. Used in the Product form, under the 'color' drop-down selector.",
     components: {
@@ -42,6 +43,7 @@ const Colors = {
         ],
       },
     },
+    colorField,
   ],
 };
 

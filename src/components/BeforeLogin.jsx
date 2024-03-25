@@ -1,15 +1,13 @@
-import React from 'react'
-import "./components.css";
+import React from "react";
+import "./styles.css";
 
 const BeforeLogin = () => {
   return (
-    <div className='before-login'>
+    <div className="before-login">
       <h3>Welcome to Mattarazi Uomo</h3>
-      <p>
-        {'Login to manage your website and catalog'}
-      </p>
+      <p>{"Login to manage your website and catalog"}</p>
     </div>
-  )
-}
+  );
+};
 
-export default BeforeLogin
+export default BeforeLogin;

@@ -2,7 +2,7 @@ import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import CustomListView from "../views/CustomListView";
 import { CustomTabCreate } from "../components/CustomTabCreate";
-import { CustomCell } from "../components/CustomCell";
+import { Cell } from "../components/imageField/Cell";
 
 const collectionName = "products";
 const Products = {
@@ -51,7 +51,7 @@ const Products = {
       required: false,
       admin: {
         components: {
-          Cell: CustomCell,
+          Cell: Cell,
         },
       },
     },
