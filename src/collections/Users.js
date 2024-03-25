@@ -7,6 +7,7 @@ const Users = {
   admin: {
     useAsTitle: "email",
     group: "Access Controls",
+    hideAPIURL: true,
   },
   access: {
     create: isDev,

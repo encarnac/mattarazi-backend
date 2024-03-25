@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
+import { CustomTabCreate } from "../components/CustomTabCreate";
 
 const Photos = {
   slug: "photos",
@@ -7,6 +8,7 @@ const Photos = {
     // useAsTitle: "filename",
     group: "Product Catalog",
     pagination: { defaultLimit: 25 },
+    hideAPIURL: true,
     defaultColumns: [
       "filename",
       "createdAt",
@@ -18,6 +20,14 @@ const Photos = {
     ],
     description:
       "Media uploaded is used as options for the 'image' selector when creating a new Product.",
+    components: {
+      views: {
+        Edit: {
+          CreateNew: { Tab: CustomTabCreate },
+        },
+        // List: CustomListView,
+      },
+    },
   },
   access: {
     read: () => true,

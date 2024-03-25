@@ -13,19 +13,9 @@
   min-width: min-content;
 }
 
-/* Save Button Pill in Edit View */
-#action-create-button {
-  /* background-color: var(--theme-elevation-100) !important; */
-  background-color: transparent;
-  color: #fff;
-  border-radius: 2px;
-  padding-left: calc(var(--base));
-  padding-right: calc(var(--base));
-
-}
-
-#action-create-button:hover {
-  background-color: var(--theme-elevation-50) !important;
+/* Hides Create New Button inside Dropdown in Edit Mode */
+a.popup-button-list__button#action-create {
+  display: none;
 }
 
 /* Primary Buttons and Create/Edit/Delete Pills */

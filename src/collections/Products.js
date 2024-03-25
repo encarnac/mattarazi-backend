@@ -1,23 +1,21 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import CustomListView from "../views/CustomListView";
-import { CustomEditAction } from "../views/CustomEditAction";
+import { CustomTabCreate } from "../components/CustomTabCreate";
 import { CustomCell } from "../components/CustomCell";
 
+const collectionName = "products";
 const Products = {
   slug: "products",
+  versions: {
+    drafts: true,
+    maxPerDoc: 3,
+  },
   admin: {
     useAsTitle: "article",
     group: "Product Catalog",
     pagination: { defaultLimit: 25 },
-    // listSearchableFields: [
-    //   "article",
-    //   "category",
-    //   "model",
-    //   "color",
-    //   "pattern",
-    //   "material",
-    // ],
+    hideAPIURL: true,
     defaultColumns: [
       "article",
       "image",
@@ -26,16 +24,14 @@ const Products = {
       "color",
       "pattern",
       "material",
+      "_status",
     ],
     description:
       "Products refer to items on sale that are to be displayed and listed on the website.",
     components: {
       views: {
         Edit: {
-          Default: {
-            // Component: MyCustomDefaultTab,
-            actions: [CustomEditAction], // Custom actions for the default edit view
-          },
+          CreateNew: { Tab: CustomTabCreate },
         },
         // List: CustomListView,
       },
