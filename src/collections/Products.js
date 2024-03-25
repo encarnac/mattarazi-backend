@@ -2,7 +2,7 @@ import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import CustomListView from "../views/CustomListView";
 import { CustomEditAction } from "../views/CustomEditAction";
-import { ImageCell } from "../components/ImageCell";
+import { CustomCell } from "../components/CustomCell";
 
 const Products = {
   slug: "products",
@@ -55,7 +55,7 @@ const Products = {
       required: false,
       admin: {
         components: {
-          Cell: ImageCell,
+          Cell: CustomCell,
         },
       },
     },

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useListRelationships } from "payload/dist/admin/components/views/collections/List/RelationshipProvider";
 import "./components.css";
 
-export const ImageCell = (props) => {
+export const CustomCell = (props) => {
   const { field, colIndex, collection, cellData, rowData } = props;
 
   const { getRelationships, documents } = useListRelationships();
@@ -21,11 +21,7 @@ export const ImageCell = (props) => {
   return (
     <div className="product-cell">
       {documents?.[field.relationTo]?.[cellData]?.url && (
-        <Link
-          to={`/admin/collections/photos/${
-            documents?.[field.relationTo]?.[cellData]?.id
-          }`}
-        >
+        <Link to={`/admin/collections/products/${rowData.id}`}>
           <img src={documents[field.relationTo][cellData]?.url} />
         </Link>
       )}
