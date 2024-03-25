@@ -22,6 +22,8 @@ a.popup-button-list__button#action-create {
 .pill.pill--has-link.pill--has-action,
 .pill.delete-documents__toggle,
 .edit-many__toggle,
+.pill.publish-many__toggle,
+.pill.unpublish-many__toggle,
 .btn--style-primary,
 button#action-save {
   background-color: #c8353c;
@@ -31,6 +33,8 @@ button#action-save {
 .pill.pill--has-link.pill--has-action:hover,
 .pill.delete-documents__toggle:hover,
 .edit-many__toggle:hover,
+.pill.publish-many__toggle:hover,
+.pill.unpublish-many__toggle:hover,
 .btn--style-primary:not(.btn--disabled):hover,
 .btn--style-primary:not(.btn--disabled):focus-visible,
 button#action-save:hover {
