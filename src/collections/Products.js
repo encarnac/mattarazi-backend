@@ -1,5 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
+import CustomListView from "../views/CustomListView";
+import CustomEditView from "../views/CustomEditView";
 import { ImageCell } from "../components/ImageCell";
 
 const Products = {
@@ -17,8 +19,8 @@ const Products = {
     //   "material",
     // ],
     defaultColumns: [
-      "image",
       "article",
+      "image",
       "category",
       "model",
       "color",
@@ -27,6 +29,12 @@ const Products = {
     ],
     description:
       "Products refer to items on sale that are to be displayed and listed on the website.",
+    components: {
+      views: {
+        Edit: CustomEditView,
+        // List: CustomListView,
+      },
+    },
   },
   access: {
     read: () => true,
