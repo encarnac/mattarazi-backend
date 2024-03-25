@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import CustomListView from "../views/CustomListView";
-import CustomEditView from "../views/CustomEditView";
+import { CustomEditAction } from "../views/CustomEditAction";
 import { ImageCell } from "../components/ImageCell";
 
 const Products = {
@@ -31,7 +31,12 @@ const Products = {
       "Products refer to items on sale that are to be displayed and listed on the website.",
     components: {
       views: {
-        Edit: CustomEditView,
+        Edit: {
+          Default: {
+            // Component: MyCustomDefaultTab,
+            actions: [CustomEditAction], // Custom actions for the default edit view
+          },
+        },
         // List: CustomListView,
       },
     },
@@ -47,7 +52,7 @@ const Products = {
       name: "image", // required
       type: "upload", // required
       relationTo: "photos", // required
-      required: true,
+      required: false,
       admin: {
         components: {
           Cell: ImageCell,
