@@ -42,13 +42,40 @@ button#action-save:hover {
 
 
 /* Add Button on Cards */
-a.btn .btn__content .btn__icon {
+a.btn.btn--icon-only .btn__content .btn__icon {
   border-color: #C80A15;
   color: #C80A15;
 }
 
-a.btn:hover .btn__content .btn__icon {
+a.btn.btn--icon-only:hover .btn__content .btn__icon {
   background-color: #C80A15;
+}
+
+
+/* Custom Buttons for Layout Toggle */
+.btn--style-on {
+  border-radius: 4px !important;
+  padding: .96rem 1rem !important;
+  border: 1px solid #C80A15 !important;
+}
+
+.btn--style-off {
+  padding: .96rem 1rem !important;
+}
+
+.btn--style-off .btn__content .btn__label {
+  display: none !important;
+}
+
+.btn--style-off:hover .btn__content .btn__label {
+  display: inline !important;
+}
+
+.btn.btn--style-off:hover .btn__icon,
+.btn.btn--style-on:hover .btn__icon,
+.btn.btn--style-on:focus-visible .btn__icon {
+  background: none !important;
+
 }
 
 /* Button on Logout Screen */
