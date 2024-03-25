@@ -13,6 +13,21 @@
   min-width: min-content;
 }
 
+/* Save Button Pill in Edit View */
+#action-create-button {
+  /* background-color: var(--theme-elevation-100) !important; */
+  background-color: transparent;
+  color: #fff;
+  border-radius: 2px;
+  padding-left: calc(var(--base));
+  padding-right: calc(var(--base));
+
+}
+
+#action-create-button:hover {
+  background-color: var(--theme-elevation-50) !important;
+}
+
 /* Primary Buttons and Create/Edit/Delete Pills */
 .pill.pill--has-link.pill--has-action,
 .pill.delete-documents__toggle,
@@ -79,7 +94,7 @@ a.btn.btn--icon-only:hover .btn__content .btn__icon {
 }
 
 /* Button on Logout Screen */
-.btn--style-secondary:focus:not(:focus-visible),
+.btn:focus:not(:focus-visible),
 .checkbox-input:not(.checkbox-input--read-only):active .checkbox-input__input,
 .checkbox-input:not(.checkbox-input--read-only):active input[type=checkbox],
 .checkbox-input:not(.checkbox-input--read-only):focus-within .checkbox-input__input,

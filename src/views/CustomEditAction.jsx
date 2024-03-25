@@ -12,12 +12,11 @@ export const CustomEditAction = ({ props }) => {
 
   return (
     <Button
-      // icon="plus"
-      // iconPosition="left"
+      id="action-create-button"
       el="link"
       to="/admin/collections/products/create"
-      buttonStyle="transparent"
-      size="small"
+      buttonStyle="primary"
+      size="medium"
     >
       Create New
     </Button>
