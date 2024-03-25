@@ -8,20 +8,20 @@ import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { buildConfig } from "payload/config";
 
-import Logo from "./graphics/Logo.jsx";
-import Icon from "./graphics/Icon.jsx";
-import BeforeDashboard from "./components/BeforeDashboard.jsx";
-import BeforeLogin from "./components/BeforeLogin.jsx";
-import CustomDashboardView from "./views/CustomDashboardView.jsx";
+import Logo from "./graphics/Logo";
+import Icon from "./graphics/Icon";
+import BeforeDashboard from "./components/BeforeDashboard";
+import BeforeLogin from "./components/BeforeLogin";
+import CustomDashboardView from "./views/CustomDashboardView";
 
-import Users from "./collections/Users.js";
-import Categories from "./collections/Categories.js";
-import Colors from "./collections/Colors.js";
-import Materials from "./collections/Materials.js";
-import Photos from "./collections/Photos.js";
-import Models from "./collections/Models.js";
-import Patterns from "./collections/Patterns.js";
-import Products from "./collections/Products.js";
+import Users from "./collections/Users";
+import Categories from "./collections/Categories";
+import Colors from "./collections/Colors";
+import Materials from "./collections/Materials";
+import Photos from "./collections/Photos";
+import Models from "./collections/Models";
+import Patterns from "./collections/Patterns";
+import Products from "./collections/Products";
 
 const mockModulePath = path.resolve(__dirname, "mocks/emptyObject.js");
 const styleSheet = path.resolve(__dirname, "./stylesheet.css");
@@ -53,6 +53,7 @@ export default buildConfig({
         ...config,
         resolve: {
           ...config.resolve,
+          extensions: ["", ".js", ".jsx", ".tsx"],
           alias: {
             ...config.resolve.alias,
             fs: mockModulePath,
@@ -69,7 +70,7 @@ export default buildConfig({
       },
       beforeLogin: [BeforeLogin],
       beforeDashboard: [BeforeDashboard],
-      views: { Dashboard: CustomDashboardView },
+      // views: { Dashboard: CustomDashboardView },
     },
   },
   cors: [process.env.NEXT_PUBLIC_EXTERNAL_URL || ""].filter(Boolean),
