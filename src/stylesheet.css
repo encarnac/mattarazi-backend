@@ -42,6 +42,21 @@ button#action-save:hover {
   color: #fff;
 }
 
+
+/* Edit Drawer View Buttons */
+.btn.edit-many__draft:not(.btn--disabled),
+.btn-style-secondary {
+  border: 1px solid #af2e35 !important;
+  background-color: transparent !important;
+  color: #af2e35 !important;
+}
+
+.btn.edit-many__draft:not(.btn--disabled):hover,
+.btn-style-secondary:hover {
+  border: 1px solid #af2e35 !important;
+  background-color: var(--theme-elevation-100) !important;
+}
+
 /* Chevron Icon for Selected in Nav and Table */
 .nav__link-icon .icon--chevron .stroke,
 .sort-column__asc .icon--chevron .stroke,
