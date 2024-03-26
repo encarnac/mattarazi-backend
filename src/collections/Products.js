@@ -1,6 +1,7 @@
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
-import { Cell } from "../components/imageField/Cell";
+import { PhotoCell } from "../components/photoField/PhotoCell";
+import { statusCell } from "../components/statusField/statusCell";
 
 const Products = {
   slug: "products",
@@ -21,16 +22,8 @@ const Products = {
       "color",
       "pattern",
       "material",
-      "_status",
+      "published",
     ],
-    // listSearchableFields: [
-    //   "article",
-    //   "category",
-    //   "model",
-    //   "color",
-    //   "pattern",
-    //   "material",
-    // ],
     description:
       "Products contains all the goods in your store's inventory. Only items that have the status of 'Published' will be displayed on the public website for customers to browse.",
     components: {
@@ -43,7 +36,14 @@ const Products = {
     },
   },
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      if (req.user) return true;
+      return {
+        _status: {
+          equals: "published",
+        },
+      };
+    },
     create: isAdminOrDev,
     update: isAdminOrDev,
     delete: isAdminOrDev,
@@ -56,7 +56,7 @@ const Products = {
       required: false,
       admin: {
         components: {
-          Cell: Cell,
+          Cell: PhotoCell,
         },
       },
     },
@@ -99,7 +99,6 @@ const Products = {
           relationTo: "colors",
           hasMany: false,
           required: true,
-
           index: true,
         },
         {
@@ -108,7 +107,6 @@ const Products = {
           relationTo: "patterns",
           hasMany: false,
           required: true,
-
           index: true,
         },
         {
@@ -120,6 +118,16 @@ const Products = {
           index: true,
         },
       ],
+    },
+    {
+      name: "published",
+      type: "text",
+      admin: {
+        readOnly: true,
+        components: {
+          Cell: statusCell,
+        },
+      },
     },
   ],
 };
