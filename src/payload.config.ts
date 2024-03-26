@@ -111,5 +111,5 @@ export default buildConfig({
   graphQL: {
     disable: true,
   },
-  debug: rocess.env.PAYLOAD_ENV === "development",
+  debug: process.env.PAYLOAD_ENV === "development",
 });
