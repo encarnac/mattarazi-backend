@@ -1,9 +1,7 @@
 import { isAdminOrDev } from "../access/isAdminOrDev";
-import CustomListView from "../views/CustomListView";
 import { CustomTabCreate } from "../components/CustomTabCreate";
 import { Cell } from "../components/imageField/Cell";
 
-const collectionName = "products";
 const Products = {
   slug: "products",
   versions: {
@@ -56,7 +54,6 @@ const Products = {
       type: "upload",
       relationTo: "photos",
       required: false,
-
       admin: {
         components: {
           Cell: Cell,
@@ -70,7 +67,7 @@ const Products = {
       unique: true,
       index: true,
       hooks: {
-        beforeValidate: [
+        beforeChange: [
           ({ value }) => {
             return value.toUpperCase();
           },
@@ -83,7 +80,6 @@ const Products = {
       relationTo: "categories",
       hasMany: false,
       required: true,
-
       index: true,
     },
     {
@@ -92,7 +88,6 @@ const Products = {
       relationTo: "models",
       hasMany: true,
       required: true,
-
       index: true,
     },
     {
@@ -122,7 +117,6 @@ const Products = {
           relationTo: "materials",
           hasMany: true,
           required: true,
-
           index: true,
         },
       ],

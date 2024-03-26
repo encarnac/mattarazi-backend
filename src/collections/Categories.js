@@ -35,7 +35,7 @@ const Categories = {
       unique: true,
       maxLength: 30,
       hooks: {
-        beforeValidate: [
+        beforeChange: [
           ({ value }) => {
             return value.toLowerCase();
           },

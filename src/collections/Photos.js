@@ -34,7 +34,7 @@ const Photos = {
     delete: isAdminOrDev,
   },
   upload: {
-    formatOptions: { format: "png", options: { compressionLevel: 3 } },
+    formatOptions: { format: "webp" },
     resizeOptions: { width: 400 },
     mimeTypes: ["image/*"],
   },
