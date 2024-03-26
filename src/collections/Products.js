@@ -1,4 +1,3 @@
-import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import CustomListView from "../views/CustomListView";
 import { CustomTabCreate } from "../components/CustomTabCreate";
@@ -9,11 +8,11 @@ const Products = {
   slug: "products",
   versions: {
     drafts: true,
-    maxPerDoc: 3,
+    maxPerDoc: 2,
   },
   admin: {
     useAsTitle: "article",
-    group: "Product Catalog",
+    group: "Inventory",
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
     defaultColumns: [
@@ -26,8 +25,16 @@ const Products = {
       "material",
       "_status",
     ],
+    // listSearchableFields: [
+    //   "article",
+    //   "category",
+    //   "model",
+    //   "color",
+    //   "pattern",
+    //   "material",
+    // ],
     description:
-      "Products refer to items on sale that are to be displayed and listed on the website.",
+      "Products contains all the goods in your store's inventory. Only items that have the status of 'Published' will be displayed on the public website for customers to browse.",
     components: {
       views: {
         Edit: {
@@ -45,10 +52,11 @@ const Products = {
   },
   fields: [
     {
-      name: "image", // required
-      type: "upload", // required
-      relationTo: "photos", // required
+      name: "image",
+      type: "upload",
+      relationTo: "photos",
       required: false,
+
       admin: {
         components: {
           Cell: Cell,
@@ -60,6 +68,7 @@ const Products = {
       type: "text",
       required: true,
       unique: true,
+      index: true,
       hooks: {
         beforeValidate: [
           ({ value }) => {
@@ -72,7 +81,10 @@ const Products = {
       name: "category",
       type: "relationship",
       relationTo: "categories",
+      hasMany: false,
       required: true,
+
+      index: true,
     },
     {
       name: "model",
@@ -80,21 +92,29 @@ const Products = {
       relationTo: "models",
       hasMany: true,
       required: true,
+
+      index: true,
     },
     {
-      type: "row", // required
+      type: "row",
       fields: [
         {
           name: "color",
           type: "relationship",
           relationTo: "colors",
+          hasMany: false,
           required: true,
+
+          index: true,
         },
         {
           name: "pattern",
           type: "relationship",
           relationTo: "patterns",
+          hasMany: false,
           required: true,
+
+          index: true,
         },
         {
           name: "material",
@@ -102,6 +122,8 @@ const Products = {
           relationTo: "materials",
           hasMany: true,
           required: true,
+
+          index: true,
         },
       ],
     },

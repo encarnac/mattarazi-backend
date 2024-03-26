@@ -1,4 +1,3 @@
-import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
 
@@ -11,13 +10,12 @@ const Models = {
     hideAPIURL: true,
     defaultColumns: ["name", "createdAt"],
     description:
-      "Model options refer to the fit of tops (e.g. jackets, suits, shirts, etc.). Used in the Product form, under the 'fit' drop-down selector.",
+      "Models contains all the possible fits / styles of your products. They will be used in the Products Table as options in the 'Model' selector, matching it with a specific product listing.",
     components: {
       views: {
         Edit: {
           CreateNew: { Tab: CustomTabCreate },
         },
-        // List: CustomListView,
       },
     },
   },
@@ -33,10 +31,10 @@ const Models = {
       type: "text",
       required: true,
       unique: true,
+      maxLength: 30,
       hooks: {
         beforeValidate: [
           ({ value }) => {
-            // Trim whitespace and convert to lowercase
             return value.toLowerCase();
           },
         ],

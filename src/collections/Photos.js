@@ -1,12 +1,11 @@
-import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
 
 const Photos = {
   slug: "photos",
   admin: {
-    // useAsTitle: "filename",
-    group: "Product Catalog",
+    useAsTitle: "filename",
+    group: "Options",
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
     defaultColumns: [
@@ -19,13 +18,12 @@ const Photos = {
       "url",
     ],
     description:
-      "Media uploaded is used as options for the 'image' selector when creating a new Product.",
+      "Photos contains all the images of the products in your inventory. They will be used in the Products Table as options in the 'Image' selector, matching it with a specific product listing.",
     components: {
       views: {
         Edit: {
           CreateNew: { Tab: CustomTabCreate },
         },
-        // List: CustomListView,
       },
     },
   },
@@ -37,14 +35,14 @@ const Photos = {
   },
   upload: {
     formatOptions: { format: "png", options: { compressionLevel: 3 } },
-    resizeOptions: { width: 300 },
+    resizeOptions: { width: 400 },
     mimeTypes: ["image/*"],
   },
   fields: [
     {
       name: "caption",
       type: "text",
-      unique: true,
+      maxLength: 100,
     },
   ],
 };

@@ -1,4 +1,3 @@
-import { CollectionConfig } from "payload/types";
 import { isDev } from "../access/isDev";
 
 const Users = {

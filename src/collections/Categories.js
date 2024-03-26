@@ -11,7 +11,7 @@ const Categories = {
     hideAPIURL: true,
     defaultColumns: ["name", "createdAt"],
     description:
-      "Category options are used in the Product form, under the 'categories' drop-down selector.",
+      "Categories contain all the different types of products in your inventory. They will be used in the Products Table as options in the 'Category' selector, matching it with a specific product listing.",
     components: {
       views: {
         Edit: {
@@ -33,6 +33,7 @@ const Categories = {
       type: "text",
       required: true,
       unique: true,
+      maxLength: 30,
       hooks: {
         beforeValidate: [
           ({ value }) => {
