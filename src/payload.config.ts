@@ -12,6 +12,7 @@ import Logo from "./graphics/Logo";
 import Icon from "./graphics/Icon";
 import BeforeDashboard from "./components/BeforeDashboard";
 import BeforeLogin from "./components/BeforeLogin";
+import CustomNavBar from "./components/navBar/CustomNavBar";
 import CustomDashboardView from "./views/CustomDashboardView";
 
 import Users from "./collections/Users";
@@ -64,13 +65,14 @@ export default buildConfig({
       };
     },
     components: {
+      Nav: CustomNavBar,
       graphics: {
         Logo,
         Icon,
       },
       beforeLogin: [BeforeLogin],
       beforeDashboard: [BeforeDashboard],
-      // views: { Dashboard: CustomDashboardView },
+      views: { Dashboard: CustomDashboardView },
     },
   },
   cors: [process.env.NEXT_PUBLIC_EXTERNAL_URL || ""].filter(Boolean),
@@ -89,6 +91,7 @@ export default buildConfig({
     Patterns,
     Users,
   ],
+  indexSortableFields: true,
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
