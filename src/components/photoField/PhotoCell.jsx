@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useListRelationships } from "payload/dist/admin/components/views/collections/List/RelationshipProvider";
 import "./styles.css";
 
-export const Cell = (props) => {
+export const PhotoCell = (props) => {
   const { field, colIndex, collection, cellData, rowData } = props;
 
   const { getRelationships, documents } = useListRelationships();

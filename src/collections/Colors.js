@@ -1,6 +1,6 @@
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
-import colorField from "../components/colorPicker/config";
+import colorPickerCell from "../components/colorPickerField/config";
 
 const Colors = {
   slug: "colors",
@@ -41,7 +41,7 @@ const Colors = {
         ],
       },
     },
-    colorField,
+    colorPickerCell,
   ],
 };
 

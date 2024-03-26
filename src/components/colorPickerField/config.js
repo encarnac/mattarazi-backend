@@ -1,6 +1,6 @@
 import { Field } from "payload/types";
 import InputField from "./InputField";
-import Cell from "./Cell";
+import colorPickerCell from "./colorPickerCell";
 
 export const validateHexColor = (value = "") => {
   return (
@@ -9,7 +9,7 @@ export const validateHexColor = (value = "") => {
   );
 };
 
-const colorField = {
+const colorPickerField = {
   name: "sample",
   type: "text",
   validate: validateHexColor,
@@ -17,9 +17,9 @@ const colorField = {
   admin: {
     components: {
       Field: InputField,
-      Cell: Cell,
+      Cell: colorPickerCell,
     },
   },
 };
 
-export default colorField;
+export default colorPickerField;
