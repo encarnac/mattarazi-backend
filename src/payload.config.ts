@@ -1,19 +1,12 @@
 // @ts-nocheck
 import path from "path";
 
+import { buildConfig } from "payload/config";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
-import { buildConfig } from "payload/config";
-
-import Logo from "./graphics/Logo";
-import Icon from "./graphics/Icon";
-import BeforeDashboard from "./components/BeforeDashboard";
-import BeforeLogin from "./components/BeforeLogin";
-import CustomNavBar from "./components/navBar/CustomNavBar";
-import CustomDashboardView from "./views/CustomDashboardView";
 
 import Users from "./collections/Users";
 import Categories from "./collections/Categories";
@@ -23,6 +16,13 @@ import Photos from "./collections/Photos";
 import Models from "./collections/Models";
 import Patterns from "./collections/Patterns";
 import Products from "./collections/Products";
+
+import Logo from "./graphics/Logo";
+import Icon from "./graphics/Icon";
+import BeforeDashboard from "./components/BeforeDashboard";
+import BeforeLogin from "./components/BeforeLogin";
+import CustomNavBar from "./components/navBar/CustomNavBar";
+import CustomDashboardView from "./views/CustomDashboardView";
 
 const mockModulePath = path.resolve(__dirname, "mocks/emptyObject.js");
 const styleSheet = path.resolve(__dirname, "./stylesheet.css");
@@ -65,11 +65,11 @@ export default buildConfig({
       };
     },
     components: {
-      Nav: CustomNavBar,
       graphics: {
         Logo,
         Icon,
       },
+      Nav: CustomNavBar,
       beforeLogin: [BeforeLogin],
       beforeDashboard: [BeforeDashboard],
       views: { Dashboard: CustomDashboardView },
@@ -92,12 +92,6 @@ export default buildConfig({
     Users,
   ],
   indexSortableFields: true,
-  typescript: {
-    outputFile: path.resolve(__dirname, "payload-types.ts"),
-  },
-  graphQL: {
-    disable: true,
-  },
   plugins: [
     cloudStorage({
       enabled: process.env.PAYLOAD_ENV === "production",
@@ -111,4 +105,11 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,
   }),
+  typescript: {
+    outputFile: path.resolve(__dirname, "payload-types.ts"),
+  },
+  graphQL: {
+    disable: true,
+  },
+  debug: rocess.env.PAYLOAD_ENV === "development",
 });
