@@ -16,7 +16,7 @@ const Products = {
     hideAPIURL: true,
     defaultColumns: [
       "article",
-      "image",
+      "photo",
       "category",
       "model",
       "color",
@@ -50,7 +50,7 @@ const Products = {
   },
   fields: [
     {
-      name: "image",
+      name: "photo",
       type: "upload",
       relationTo: "photos",
       required: false,
