@@ -95,6 +95,7 @@ const InputField = (props) => {
         <div className="">
           <div className="color-picker-container">
             <input
+              id="sample"
               className="color-picker-input"
               type="color"
               onChange={(e) => {
