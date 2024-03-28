@@ -17,8 +17,7 @@ const Products = {
     hideAPIURL: true,
     defaultColumns: [
       "article",
-      "photo",
-      "slideshow",
+      "media",
       "category",
       "model",
       "color",
@@ -66,38 +65,50 @@ const Products = {
       },
     },
     {
-      name: "slideshow",
+      name: "media",
       type: "array",
-      label: "Photo(s)",
+      label: "Media",
       maxRows: 3,
       labels: {
         singular: "Photo",
         plural: "Photos",
       },
       hooks: {
+        beforeChange: [
+          ({ value }) => {
+            const filteredValue = value.filter(
+              (val) => val.photo && val.photo !== null
+            );
+            if (filteredValue[0] && filteredValue[0].thumbnail) {
+              delete filteredValue[0].thumbnail;
+            }
+            return filteredValue;
+          },
+        ],
         afterRead: [
           async ({ value }) => {
-            const update = value.forEach(async (val) => {
-              console.log("!!beforeVALUE:   ", val);
+            // TO DO: Check if each photo exists and remove the ones that don't
+            if (value[0] && value[0].photo) {
               const thumbnail = await payload.find({
                 collection: "photos",
                 where: {
                   id: {
-                    equals: val.photo,
+                    equals: value[0].photo,
                   },
                 },
               });
 
-              console.log("!!thumbnail:   ", thumbnail.docs[0].url);
-              val.thumbnail = thumbnail.docs[0].url;
-              console.log("!!update:   ", val);
-            });
-            console.log("!!complete update:   ", update);
-            return update;
+              // console.log(thumbnail); // Check if image found
+              if (thumbnail && thumbnail.docs[0]) {
+                value[0].thumbnail = thumbnail.docs[0].url;
+                return value;
+              }
+            }
           },
         ],
       },
       admin: {
+        initCollapsed: false,
         components: {
           Cell: PhotoCell,
           RowLabel: ({ data, index }) => {
@@ -110,13 +121,8 @@ const Products = {
           name: "photo",
           type: "upload",
           relationTo: "photos",
-          maxDepth: 3,
+          maxDepth: 1,
           required: false,
-          // admin: {
-          //   components: {
-          //     Cell: PhotoCell,
-          //   },
-          // },
         },
         {
           label: "caption",
@@ -137,7 +143,7 @@ const Products = {
               name: "model",
               type: "relationship",
               relationTo: "models",
-              maxDepth: 3,
+              maxDepth: 1,
               hasMany: true,
               required: true,
               index: true,
@@ -146,7 +152,7 @@ const Products = {
               name: "material",
               type: "relationship",
               relationTo: "materials",
-              maxDepth: 3,
+              maxDepth: 1,
               hasMany: true,
               required: true,
               index: true,
@@ -158,7 +164,7 @@ const Products = {
                   name: "color",
                   type: "relationship",
                   relationTo: "colors",
-                  maxDepth: 3,
+                  maxDepth: 1,
                   hasMany: false,
                   required: true,
                   index: true,
@@ -167,7 +173,7 @@ const Products = {
                   name: "pattern",
                   type: "relationship",
                   relationTo: "patterns",
-                  maxDepth: 3,
+                  maxDepth: 1,
                   hasMany: false,
                   required: true,
                   index: true,
@@ -204,7 +210,7 @@ const Products = {
       name: "category",
       type: "relationship",
       relationTo: "categories",
-      maxDepth: 3,
+      maxDepth: 1,
       hasMany: false,
       required: true,
       index: true,
