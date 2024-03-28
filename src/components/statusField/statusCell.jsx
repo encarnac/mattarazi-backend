@@ -6,7 +6,6 @@ export const statusCell = (props) => {
   const { cellData, rowData } = props;
 
   if (!rowData) return null;
-  console.log(rowData);
 
   const status = rowData._status;
 
