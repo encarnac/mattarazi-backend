@@ -87,23 +87,34 @@ const Products = {
         ],
         afterRead: [
           async ({ value }) => {
-            // TO DO: Check if each photo exists and remove the ones that don't
-            if (value[0] && value[0].photo) {
-              const thumbnail = await payload.find({
-                collection: "photos",
-                where: {
-                  id: {
-                    equals: value[0].photo,
+            const promises = value.map(async (val) => {
+              if (val.photo && val.photo !== null) {
+                let thumbnail = await payload.find({
+                  collection: "photos",
+                  where: {
+                    id: {
+                      equals: val.photo,
+                    },
                   },
-                },
-              });
+                });
 
-              // console.log(thumbnail); // Check if image found
-              if (thumbnail && thumbnail.docs[0]) {
-                value[0].thumbnail = thumbnail.docs[0].url;
-                return value;
+                if (thumbnail.totalDocs > 0) {
+                  return thumbnail.docs.map((doc) => doc.url).toString();
+                }
+                return null;
               }
-            }
+            });
+
+            const urls = await Promise.all(promises);
+
+            // TO DO: MATCH THE RIGHT URL WITH THE RIGHT PHOTO/INDEX
+            const newValue = value
+              .map((val, index) => {
+                return { ...val, thumbnail: urls[index] };
+              })
+              .filter((val) => val.thumbnail !== null);
+
+            return newValue;
           },
         ],
       },
@@ -121,8 +132,9 @@ const Products = {
           name: "photo",
           type: "upload",
           relationTo: "photos",
-          maxDepth: 1,
+          maxDepth: 2,
           required: false,
+          index: true,
         },
         {
           label: "caption",
@@ -143,7 +155,7 @@ const Products = {
               name: "model",
               type: "relationship",
               relationTo: "models",
-              maxDepth: 1,
+              maxDepth: 2,
               hasMany: true,
               required: true,
               index: true,
@@ -152,7 +164,7 @@ const Products = {
               name: "material",
               type: "relationship",
               relationTo: "materials",
-              maxDepth: 1,
+              maxDepth: 2,
               hasMany: true,
               required: true,
               index: true,
@@ -164,7 +176,7 @@ const Products = {
                   name: "color",
                   type: "relationship",
                   relationTo: "colors",
-                  maxDepth: 1,
+                  maxDepth: 2,
                   hasMany: false,
                   required: true,
                   index: true,
@@ -173,7 +185,7 @@ const Products = {
                   name: "pattern",
                   type: "relationship",
                   relationTo: "patterns",
-                  maxDepth: 1,
+                  maxDepth: 2,
                   hasMany: false,
                   required: true,
                   index: true,
@@ -210,7 +222,7 @@ const Products = {
       name: "category",
       type: "relationship",
       relationTo: "categories",
-      maxDepth: 1,
+      maxDepth: 2,
       hasMany: false,
       required: true,
       index: true,
