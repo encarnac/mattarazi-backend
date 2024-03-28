@@ -1,3 +1,4 @@
+import payload from "payload";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
 import { PhotoCell } from "../components/photoField/PhotoCell";
@@ -17,6 +18,7 @@ const Products = {
     defaultColumns: [
       "article",
       "photo",
+      "slideshow",
       "category",
       "model",
       "color",
@@ -49,66 +51,77 @@ const Products = {
     delete: isAdminOrDev,
   },
   fields: [
-    // PRODUCT OVERVIEW GROUP
     {
-      type: "tabs",
-      tabs: [
+      name: "article",
+      type: "text",
+      required: true,
+      unique: true,
+      index: true,
+      hooks: {
+        beforeChange: [
+          ({ value }) => {
+            return value.toUpperCase();
+          },
+        ],
+      },
+    },
+    {
+      name: "slideshow",
+      type: "array",
+      label: "Photo(s)",
+      maxRows: 3,
+      labels: {
+        singular: "Photo",
+        plural: "Photos",
+      },
+      hooks: {
+        afterRead: [
+          async ({ value }) => {
+            const update = value.forEach(async (val) => {
+              console.log("!!beforeVALUE:   ", val);
+              const thumbnail = await payload.find({
+                collection: "photos",
+                where: {
+                  id: {
+                    equals: val.photo,
+                  },
+                },
+              });
+
+              console.log("!!thumbnail:   ", thumbnail.docs[0].url);
+              val.thumbnail = thumbnail.docs[0].url;
+              console.log("!!update:   ", val);
+            });
+            console.log("!!complete update:   ", update);
+            return update;
+          },
+        ],
+      },
+      admin: {
+        components: {
+          Cell: PhotoCell,
+          RowLabel: ({ data, index }) => {
+            return data?.title || `Photo ${String(index).padStart(2, "0")}`;
+          },
+        },
+      },
+      fields: [
         {
-          label: "Overview", // required
-          fields: [
-            {
-              name: "article",
-              type: "text",
-              required: true,
-              unique: true,
-              index: true,
-              hooks: {
-                beforeChange: [
-                  ({ value }) => {
-                    return value.toUpperCase();
-                  },
-                ],
-              },
-            },
-            {
-              name: "slideshow",
-              type: "array",
-              label: "Photo(s)",
-              maxRows: 3,
-              labels: {
-                singular: "Photo",
-                plural: "Photos",
-              },
-              fields: [
-                {
-                  name: "photo",
-                  type: "upload",
-                  relationTo: "photos",
-                  required: false,
-                  admin: {
-                    components: {
-                      Cell: PhotoCell,
-                    },
-                  },
-                },
-                {
-                  label: "caption",
-                  name: "alt",
-                  type: "text",
-                },
-              ],
-              admin: {
-                initCollapsed: false,
-                components: {
-                  RowLabel: ({ data, index }) => {
-                    return (
-                      data?.title || `Photo ${String(index).padStart(2, "0")}`
-                    );
-                  },
-                },
-              },
-            },
-          ],
+          name: "photo",
+          type: "upload",
+          relationTo: "photos",
+          maxDepth: 3,
+          required: false,
+          // admin: {
+          //   components: {
+          //     Cell: PhotoCell,
+          //   },
+          // },
+        },
+        {
+          label: "caption",
+          name: "alt",
+          type: "text",
         },
       ],
     },
@@ -124,6 +137,7 @@ const Products = {
               name: "model",
               type: "relationship",
               relationTo: "models",
+              maxDepth: 3,
               hasMany: true,
               required: true,
               index: true,
@@ -132,6 +146,7 @@ const Products = {
               name: "material",
               type: "relationship",
               relationTo: "materials",
+              maxDepth: 3,
               hasMany: true,
               required: true,
               index: true,
@@ -143,6 +158,7 @@ const Products = {
                   name: "color",
                   type: "relationship",
                   relationTo: "colors",
+                  maxDepth: 3,
                   hasMany: false,
                   required: true,
                   index: true,
@@ -151,6 +167,7 @@ const Products = {
                   name: "pattern",
                   type: "relationship",
                   relationTo: "patterns",
+                  maxDepth: 3,
                   hasMany: false,
                   required: true,
                   index: true,
@@ -187,6 +204,7 @@ const Products = {
       name: "category",
       type: "relationship",
       relationTo: "categories",
+      maxDepth: 3,
       hasMany: false,
       required: true,
       index: true,
