@@ -41,7 +41,7 @@ const storageAdapter = s3Adapter({
 });
 
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  // serverURL: process.env.RAILWAY_PUBLIC_DOMAIN,
   admin: {
     user: Users.slug,
     meta: {
@@ -76,10 +76,16 @@ export default buildConfig({
       views: { Dashboard: CustomDashboardView },
     },
   },
-  cors: "*",
-  // csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
-  // cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
-  // csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
+  csrf: [
+    process.env.PAYLOAD_PUBLIC_SERVER_URL,
+    process.env.RAILWAY_PUBLIC_DOMAIN,
+    process.env.NEXT_PUBLIC_EXTERNAL_URL,
+  ],
+  cors: [
+    process.env.PAYLOAD_PUBLIC_SERVER_URL,
+    process.env.RAILWAY_PUBLIC_DOMAIN,
+    process.env.NEXT_PUBLIC_EXTERNAL_URL,
+  ],
   editor: slateEditor({}),
   collections: [
     Products,
