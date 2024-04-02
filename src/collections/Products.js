@@ -22,7 +22,7 @@ const Products = {
       "model",
       "color",
       "pattern",
-      "material",
+      "composition",
       "published",
     ],
     description:
@@ -161,9 +161,9 @@ const Products = {
               index: true,
             },
             {
-              name: "material",
+              name: "composition",
               type: "relationship",
-              relationTo: "materials",
+              relationTo: "compositions",
               maxDepth: 2,
               hasMany: true,
               required: true,

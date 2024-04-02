@@ -11,7 +11,7 @@ import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import Users from "./collections/Users";
 import Categories from "./collections/Categories";
 import Colors from "./collections/Colors";
-import Materials from "./collections/Materials";
+import Compositions from "./collections/Compositions";
 import Photos from "./collections/Photos";
 import Models from "./collections/Models";
 import Patterns from "./collections/Patterns";
@@ -85,7 +85,7 @@ export default buildConfig({
     Products,
     Categories,
     Colors,
-    Materials,
+    Compositions,
     Photos,
     Models,
     Patterns,
