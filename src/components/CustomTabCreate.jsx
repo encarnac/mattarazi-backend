@@ -2,7 +2,6 @@ import React from "react";
 import { useDocumentInfo } from "payload/components/utilities";
 
 export const CustomTabCreate = ({}) => {
-  // const collectionName = "products";
   const { collection } = useDocumentInfo();
   console.log(collection);
 

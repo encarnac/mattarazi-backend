@@ -5,7 +5,7 @@ import path from "path";
 
 require("dotenv").config();
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.use("/assets", express.static(path.resolve(__dirname, "./assets")));
 
 // // Redirect root to Admin panel
