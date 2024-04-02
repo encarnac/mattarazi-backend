@@ -52,6 +52,7 @@ const DefaultNav = () => {
               ({ admin: { hidden } }) =>
                 !(typeof hidden === "function" ? hidden({ user }) : hidden)
             )
+            .filter((collection) => collection.slug !== "search") // Hiding Search Collection
             .map((collection) => {
               const entityToGroup = {
                 entity: collection,

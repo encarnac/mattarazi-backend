@@ -7,6 +7,7 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
+import search, { searchOverrides } from "@payloadcms/plugin-search";
 
 import Users from "./collections/Users";
 import Categories from "./collections/Categories";
@@ -99,6 +100,12 @@ export default buildConfig({
         photos: {
           adapter: storageAdapter,
         },
+      },
+    }),
+    search({
+      collections: ["products"],
+      defaultPriorities: {
+        products: 25,
       },
     }),
   ],

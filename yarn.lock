@@ -1838,6 +1838,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@payloadcms/plugin-search@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@payloadcms/plugin-search@npm:1.1.0"
+  dependencies:
+    ts-deepmerge: "npm:^2.0.1"
+  peerDependencies:
+    payload: ^0.18.5 || ^1.0.0 || ^2.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: c52415f94804ce403ade482b513e358720b89bd3e111dd00984d1a678a18559def6f580495df6033f4787b9c55208350522748e541c0920112c6f2f98e5a5046
+  languageName: node
+  linkType: hard
+
 "@payloadcms/richtext-slate@npm:^1.4.0":
   version: 1.4.0
   resolution: "@payloadcms/richtext-slate@npm:1.4.0"
@@ -6991,6 +7003,7 @@ __metadata:
     "@payloadcms/db-mongodb": "npm:^1.4.3"
     "@payloadcms/plugin-cloud": "npm:^3.0.0"
     "@payloadcms/plugin-cloud-storage": "npm:^1.1.2"
+    "@payloadcms/plugin-search": "npm:^1.1.0"
     "@payloadcms/richtext-slate": "npm:^1.4.0"
     "@types/express": "npm:^4.17.9"
     copyfiles: "npm:^2.4.1"
@@ -10777,6 +10790,13 @@ __metadata:
   dependencies:
     utf8-byte-length: "npm:^1.0.1"
   checksum: af2b431fc4314f119b551e5fccfad49d4c0ef82e13ba9ca61be6567801195b08e732ce9643542e8ad1b3df44f3df2d7345b3dd34f723954b6bb43a14584d6b3c
+  languageName: node
+  linkType: hard
+
+"ts-deepmerge@npm:^2.0.1":
+  version: 2.0.7
+  resolution: "ts-deepmerge@npm:2.0.7"
+  checksum: c41d71031021f07f1e5bd8ab3c5e752e826f69dae76bfca599a69aaafa3b51877f4897e184437a25ba49d66966d50f8a586cce296f16b8adcdbe91a4e0badfc7
   languageName: node
   linkType: hard
 
