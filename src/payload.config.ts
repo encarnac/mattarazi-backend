@@ -77,7 +77,7 @@ export default buildConfig({
     },
   },
   cors: "*",
-  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
+  // csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
   // cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
   // csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
   editor: slateEditor({}),
