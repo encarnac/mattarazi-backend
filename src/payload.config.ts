@@ -76,14 +76,8 @@ export default buildConfig({
       views: { Dashboard: CustomDashboardView },
     },
   },
-  cors: [
-    process.env.NEXT_PUBLIC_EXTERNAL_URL,
-    process.env.PAYLOAD_PUBLIC_SERVER_URL || "",
-  ].filter(Boolean),
-  csrf: [
-    process.env.PAYLOAD_PUBLIC_SERVER_URL,
-    process.env.NEXT_PUBLIC_EXTERNAL_URL || "",
-  ].filter(Boolean),
+  // cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
+  // csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
   editor: slateEditor({}),
   collections: [
     Products,
