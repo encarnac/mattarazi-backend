@@ -2,7 +2,7 @@
   "name": "mattarazi-payload",
   "description": "A blank template to get started with Payload",
   "version": "1.0.0",
-  "main": "dist/server.ts",
+  "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
@@ -37,7 +37,5 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.8.4"
   },
-  "resolutions": {
-    "@types/mime": "3.0.4"
-  }
+  "packageManager": "yarn@4.1.1"
 }
