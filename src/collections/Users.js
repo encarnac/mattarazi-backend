@@ -1,4 +1,5 @@
 import { isDev } from "../access/isDev";
+import { isAdminOrDev } from "../access/isAdminOrDev";
 
 const Users = {
   slug: "users",
@@ -9,8 +10,9 @@ const Users = {
     hideAPIURL: true,
   },
   access: {
+    read: isAdminOrDev,
     create: isDev,
-    update: isDev,
+    update: isAdminOrDev,
     delete: isDev,
   },
   fields: [
