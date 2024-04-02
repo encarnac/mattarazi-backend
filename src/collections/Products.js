@@ -1,8 +1,12 @@
-import payload from "payload";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
 import { PhotoCell } from "../components/photoField/PhotoCell";
 import { statusCell } from "../components/statusField/statusCell";
+import { transformUppercase } from "../hooks/transformCase";
+import getThumbnail from "../hooks/getThumbnail";
+import removeThumbnail from "../hooks/removeThumbnail";
+import getCurrentDate from "../hooks/getCurrentDate";
+import getAllProducts from "../endpoints/getAllProducts";
 
 const Products = {
   slug: "products",
@@ -49,6 +53,13 @@ const Products = {
     update: isAdminOrDev,
     delete: isAdminOrDev,
   },
+  endpoints: [
+    {
+      path: "/all",
+      method: "get",
+      handler: getAllProducts(),
+    },
+  ],
   fields: [
     {
       name: "article",
@@ -57,11 +68,7 @@ const Products = {
       unique: true,
       index: true,
       hooks: {
-        beforeChange: [
-          ({ value }) => {
-            return value.toUpperCase();
-          },
-        ],
+        beforeChange: [transformUppercase],
       },
     },
     {
@@ -74,49 +81,8 @@ const Products = {
         plural: "Photos",
       },
       hooks: {
-        beforeChange: [
-          ({ value }) => {
-            const filteredValue = value.filter(
-              (val) => val.photo && val.photo !== null
-            );
-            if (filteredValue[0] && filteredValue[0].thumbnail) {
-              delete filteredValue[0].thumbnail;
-            }
-            return filteredValue;
-          },
-        ],
-        afterRead: [
-          async ({ value }) => {
-            const promises = value.map(async (val) => {
-              if (val.photo && val.photo !== null) {
-                let thumbnail = await payload.find({
-                  collection: "photos",
-                  where: {
-                    id: {
-                      equals: val.photo,
-                    },
-                  },
-                });
-
-                if (thumbnail.totalDocs > 0) {
-                  return thumbnail.docs.map((doc) => doc.url).toString();
-                }
-                return null;
-              }
-            });
-
-            const urls = await Promise.all(promises);
-
-            // TO DO: MATCH THE RIGHT URL WITH THE RIGHT PHOTO/INDEX
-            const newValue = value
-              .map((val, index) => {
-                return { ...val, thumbnail: urls[index] };
-              })
-              .filter((val) => val.thumbnail !== null);
-
-            return newValue;
-          },
-        ],
+        beforeChange: [getThumbnail],
+        afterRead: [removeThumbnail],
       },
       admin: {
         initCollapsed: false,
@@ -208,14 +174,7 @@ const Products = {
         },
       },
       hooks: {
-        beforeChange: [
-          ({ siblingData, value }) => {
-            if (siblingData._status === "published" && !value) {
-              return new Date();
-            }
-            return value;
-          },
-        ],
+        beforeChange: [getCurrentDate],
       },
     },
     {

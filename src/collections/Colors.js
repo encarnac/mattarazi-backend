@@ -1,6 +1,7 @@
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
 import colorPickerCell from "../components/colorPickerField/config";
+import { transformLowercase } from "../hooks/transformCase";
 
 const Colors = {
   slug: "colors",
@@ -34,11 +35,7 @@ const Colors = {
       unique: true,
       maxLength: 30,
       hooks: {
-        beforeChange: [
-          ({ value }) => {
-            return value.toLowerCase();
-          },
-        ],
+        beforeChange: [transformLowercase],
       },
     },
     colorPickerCell,

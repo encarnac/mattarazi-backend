@@ -1,5 +1,6 @@
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
+import { transformLowercase } from "../hooks/transformCase";
 
 const Models = {
   slug: "models",
@@ -33,11 +34,7 @@ const Models = {
       unique: true,
       maxLength: 30,
       hooks: {
-        beforeChange: [
-          ({ value }) => {
-            return value.toLowerCase();
-          },
-        ],
+        beforeChange: [transformLowercase],
       },
     },
   ],

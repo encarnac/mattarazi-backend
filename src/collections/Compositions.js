@@ -1,5 +1,6 @@
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
+import { transformLowercase } from "../hooks/transformCase";
 
 const Compositions = {
   slug: "compositions",
@@ -52,11 +53,7 @@ const Compositions = {
             width: "50%",
           },
           hooks: {
-            beforeChange: [
-              ({ value }) => {
-                return value.toLowerCase();
-              },
-            ],
+            beforeChange: [transformLowercase],
           },
         },
         {

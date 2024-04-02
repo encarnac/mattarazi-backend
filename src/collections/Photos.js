@@ -35,7 +35,7 @@ const Photos = {
   },
   upload: {
     formatOptions: { format: "webp" },
-    resizeOptions: { width: 400 },
+    resizeOptions: { width: 800 },
     mimeTypes: ["image/*"],
   },
   fields: [

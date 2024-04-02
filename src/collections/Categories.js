@@ -1,6 +1,6 @@
-import { CollectionConfig } from "payload/types";
 import { isAdminOrDev } from "../access/isAdminOrDev";
 import { CustomTabCreate } from "../components/CustomTabCreate";
+import { transformLowercase } from "../hooks/transformCase";
 
 const Categories = {
   slug: "categories",
@@ -35,11 +35,7 @@ const Categories = {
       unique: true,
       maxLength: 30,
       hooks: {
-        beforeChange: [
-          ({ value }) => {
-            return value.toLowerCase();
-          },
-        ],
+        beforeChange: [transformLowercase],
       },
     },
   ],
