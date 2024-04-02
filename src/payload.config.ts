@@ -94,7 +94,7 @@ export default buildConfig({
   indexSortableFields: true,
   plugins: [
     cloudStorage({
-      enabled: process.env.PAYLOAD_ENV === "production",
+      enabled: true,
       collections: {
         photos: {
           adapter: storageAdapter,
@@ -111,5 +111,5 @@ export default buildConfig({
   graphQL: {
     disable: true,
   },
-  debug: process.env.PAYLOAD_ENV === "development",
+  debug: process.env.NODE_ENV === "development",
 });
