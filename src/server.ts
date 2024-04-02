@@ -8,10 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 app.use("/assets", express.static(path.resolve(__dirname, "./assets")));
 
-// // Redirect root to Admin panel
-// app.get("/", (_, res) => {
-//   res.redirect("/admin");
-// });
+// Redirect root to Admin panel
+app.get("/", (_, res) => {
+  res.redirect("/admin");
+});
 
 const start = async () => {
   // Initialize Payload
