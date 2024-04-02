@@ -41,7 +41,7 @@ const storageAdapter = s3Adapter({
 });
 
 export default buildConfig({
-  // serverURL: process.env.RAILWAY_PUBLIC_DOMAIN,
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
     user: Users.slug,
     meta: {
@@ -78,12 +78,10 @@ export default buildConfig({
   },
   csrf: [
     process.env.PAYLOAD_PUBLIC_SERVER_URL,
-    process.env.RAILWAY_PUBLIC_DOMAIN,
     process.env.NEXT_PUBLIC_EXTERNAL_URL,
   ],
   cors: [
     process.env.PAYLOAD_PUBLIC_SERVER_URL,
-    process.env.RAILWAY_PUBLIC_DOMAIN,
     process.env.NEXT_PUBLIC_EXTERNAL_URL,
   ],
   editor: slateEditor({}),
