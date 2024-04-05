@@ -10,6 +10,7 @@ const Compositions = {
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
     defaultColumns: ["percentage", "material", "createdAt"],
+    listSearchableFields: ["material"],
     description:
       "Compositions contain all the different materials that are used in your products' fabrics. They will be used in the Products Table as options in the 'Composition' selector, matching it with a specific product listing.",
     components: {

@@ -17,6 +17,7 @@ const Photos = {
       "height",
       "url",
     ],
+    listSearchableFields: ["filename"],
     description:
       "Photos contains all the images of the products in your inventory. They will be used in the Products Table as options in the 'Image' selector, matching it with a specific product listing.",
     components: {

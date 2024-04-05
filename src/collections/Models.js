@@ -10,6 +10,7 @@ const Models = {
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
     defaultColumns: ["name", "createdAt"],
+    listSearchableFields: ["name"],
     description:
       "Models contains all the possible fits / styles of your products. They will be used in the Products Table as options in the 'Model' selector, matching it with a specific product listing.",
     components: {

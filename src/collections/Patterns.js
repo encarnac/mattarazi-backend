@@ -10,6 +10,7 @@ const Patterns = {
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
     defaultColumns: ["name", "createdAt"],
+    listSearchableFields: ["name"],
     description:
       "Patterns contains all the available pattern designs used in your products' fabrics. They will be used in the Products Table as options in the 'Pattern' selector, matching it with a specific product listing.",
     components: {

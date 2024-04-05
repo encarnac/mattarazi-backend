@@ -11,6 +11,7 @@ const Colors = {
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
     defaultColumns: ["name", "sample", "createdAt"],
+    listSearchableFields: ["name"],
     description:
       "Colors contain all the common color themes found in your products. They will be used in the Products Table as options in the 'Color' selector, matching it with a specific product listing.",
     components: {

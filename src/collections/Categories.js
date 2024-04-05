@@ -10,6 +10,7 @@ const Categories = {
     pagination: { defaultLimit: 25 },
     hideAPIURL: true,
     defaultColumns: ["name", "createdAt"],
+    listSearchableFields: ["name"],
     description:
       "Categories contain all the different types of products in your inventory. They will be used in the Products Table as options in the 'Category' selector, matching it with a specific product listing.",
     components: {
@@ -34,6 +35,7 @@ const Categories = {
       required: true,
       unique: true,
       maxLength: 30,
+      index: true,
       hooks: {
         beforeChange: [transformLowercase],
       },

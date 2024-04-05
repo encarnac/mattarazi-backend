@@ -29,6 +29,19 @@ const Products = {
       "composition",
       "published",
     ],
+    listSearchableFields: [
+      "article",
+      "category",
+      "model",
+      "color",
+      "pattern",
+      "composition",
+      "category.name",
+      "model.name",
+      "color.name",
+      "pattern.name",
+      "composition.material",
+    ],
     description:
       "Products contains all the goods in your store's inventory. Only items that have the status of 'Published' will be displayed on the public website for customers to browse.",
     components: {
