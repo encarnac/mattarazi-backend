@@ -26,7 +26,7 @@ const getAllProducts = () => async (req, res, next) => {
     // Remove unwanted properties
     const newDocs = docs.docs?.map((doc) => ({
       Article: doc.title,
-      Media: doc.media.map((img) => img.id),
+      Media: doc.media.map((media) => media.photo.url),
       Model: doc.model.map((model) => model.name),
       Composition: doc.composition.map(
         (composition) => composition.composition

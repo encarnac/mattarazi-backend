@@ -1,3 +1,5 @@
+import payload from "payload";
+
 export const Search = {
   admin: {
     useAsTitle: "article",
@@ -26,17 +28,15 @@ export const Search = {
       admin: { readOnly: true },
       fields: [
         {
-          name: "primary-photo",
+          name: "photo",
           type: "upload",
           relationTo: "photos",
-          maxDepth: 3,
           admin: {
             readOnly: true,
           },
         },
       ],
     },
-
     {
       name: "category",
       type: "relationship",
@@ -86,6 +86,7 @@ export const beforeSyncSearch = ({ originalDoc, searchDoc }) => ({
   ...searchDoc,
   title: originalDoc?.article || "",
   media: originalDoc?.media || [],
+  photo: originalDoc?.media.photo || [],
   category: originalDoc?.category || "",
   model: originalDoc?.model || [],
   color: originalDoc?.color || "",
