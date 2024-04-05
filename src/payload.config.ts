@@ -107,9 +107,68 @@ export default buildConfig({
     }),
     search({
       collections: ["products"],
-      defaultPriorities: {
-        products: 25,
+      searchOverrides: {
+        admin: {
+          useAsTitle: "article",
+          listSearchableFields: [
+            "title",
+            "category.name",
+            "model.name",
+            "color.name",
+            "pattern.name",
+          ],
+          defaultColumns: [
+            "article",
+            "category",
+            "model",
+            "color",
+            "pattern",
+            "createdAt",
+          ],
+        },
+        fields: [
+          {
+            name: "category",
+            type: "relationship",
+            relationTo: "categories",
+            admin: {
+              readOnly: true,
+            },
+          },
+          {
+            name: "model",
+            type: "relationship",
+            relationTo: "models",
+            admin: {
+              readOnly: true,
+            },
+          },
+          {
+            name: "color",
+            type: "relationship",
+            relationTo: "colors",
+            admin: {
+              readOnly: true,
+            },
+          },
+          {
+            name: "pattern",
+            type: "relationship",
+            relationTo: "patterns",
+            admin: {
+              readOnly: true,
+            },
+          },
+        ],
       },
+      beforeSync: ({ originalDoc, searchDoc }) => ({
+        ...searchDoc,
+        title: originalDoc?.article || "",
+        category: originalDoc?.category || "",
+        model: originalDoc?.model || "",
+        color: originalDoc?.color || "",
+        pattern: originalDoc?.pattern || "",
+      }),
     }),
   ],
   db: mongooseAdapter({
