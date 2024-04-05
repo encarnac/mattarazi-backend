@@ -6,7 +6,6 @@ import { transformUppercase } from "../hooks/transformCase";
 import getThumbnail from "../hooks/getThumbnail";
 import removeThumbnail from "../hooks/removeThumbnail";
 import getCurrentDate from "../hooks/getCurrentDate";
-import getAllProducts from "../endpoints/getAllProducts";
 
 const Products = {
   slug: "products",
@@ -66,13 +65,6 @@ const Products = {
     update: isAdminOrDev,
     delete: isAdminOrDev,
   },
-  endpoints: [
-    {
-      path: "/all",
-      method: "get",
-      handler: getAllProducts(),
-    },
-  ],
   fields: [
     {
       name: "article",
