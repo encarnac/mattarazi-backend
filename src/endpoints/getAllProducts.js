@@ -7,6 +7,9 @@ const getAllProducts = () => async (req, res, next) => {
       collection: "products", // required
       depth: 2,
       sort: "-createdAt",
+      where: {
+        _status: { equals: "published" },
+      },
     });
 
     // Remove unwanted properties
