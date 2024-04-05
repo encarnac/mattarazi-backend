@@ -1,4 +1,4 @@
-import payload from "payload";
+import { isAdminOrDev } from "../access/isAdminOrDev";
 
 export const Search = {
   admin: {
@@ -20,6 +20,12 @@ export const Search = {
       "composition",
       "createdAt",
     ],
+  },
+  access: {
+    read: () => true,
+    create: isAdminOrDev,
+    update: isAdminOrDev,
+    delete: isAdminOrDev,
   },
   fields: [
     {
