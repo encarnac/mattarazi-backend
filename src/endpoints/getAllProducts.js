@@ -1,12 +1,25 @@
-import payload from "payload";
+import qs from "qs";
 
 const getAllProducts = () => async (req, res, next) => {
   try {
+    const query = req.query.search;
+    console.log(query);
+
     // Get the items
     const docs = await req.payload.find({
       collection: "products", // required
       depth: 2,
       sort: "-createdAt",
+      where: {
+        _status: { equals: "published" },
+        or: [
+          { article: { contains: query } },
+          { "category.name": { contains: query } },
+          { "model.name": { contains: query } },
+          { "color.name": { contains: query } },
+          { "pattern.name": { contains: query } },
+        ],
+      },
     });
 
     // Remove unwanted properties

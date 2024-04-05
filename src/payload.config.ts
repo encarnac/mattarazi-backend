@@ -24,6 +24,7 @@ import BeforeDashboard from "./components/BeforeDashboard";
 import BeforeLogin from "./components/BeforeLogin";
 import CustomNavBar from "./components/navBar/CustomNavBar";
 import CustomDashboardView from "./views/CustomDashboardView";
+import getAllProducts from "./endpoints/getAllProducts";
 
 const mockModulePath = path.resolve(__dirname, "mocks/emptyObject.js");
 const styleSheet = path.resolve(__dirname, "./stylesheet.css");
@@ -96,6 +97,14 @@ export default buildConfig({
     Users,
   ],
   indexSortableFields: true,
+  endpoints: [
+    {
+      path: "/api/search?:query",
+      root: true,
+      method: "get",
+      handler: getAllProducts(),
+    },
+  ],
   plugins: [
     cloudStorage({
       enabled: true,
