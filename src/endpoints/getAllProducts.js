@@ -2,17 +2,15 @@ const getAllProducts = () => async (req, res, next) => {
   try {
     // Determine the type of query - whether general or specific or none
     let query;
-    if (req.query.search) {
+    if (req.query.search && req.query.search !== "") {
       // Search for the query in the title, category, model, color, pattern, and composition fields
       query = [
-        [
-          { title: { like: req.query.search } },
-          { "category.name": { like: req.query.search } },
-          { "model.name": { like: req.query.search } },
-          { "color.name": { like: req.query.search } },
-          { "pattern.name": { like: req.query.search } },
-          { "composition.material": { like: req.query.search } },
-        ],
+        { title: { like: req.query.search } },
+        { "category.name": { like: req.query.search } },
+        { "model.name": { like: req.query.search } },
+        { "color.name": { like: req.query.search } },
+        { "pattern.name": { like: req.query.search } },
+        { "composition.material": { like: req.query.search } },
       ];
     } else if (req.query) {
       // The field's property depends on the type as some are either "name" or "material"
