@@ -48,7 +48,7 @@ const getAllProducts = () => async (req, res, next) => {
     }));
 
     // Send the filtered results at the end of the original results
-    res.status(200).send({ ...oldDocs, newDocs });
+    res.status(200).send(newDocs);
   } catch {
     throw new Error("Error fetching products");
   }

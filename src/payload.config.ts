@@ -101,7 +101,7 @@ export default buildConfig({
   indexSortableFields: true,
   endpoints: [
     {
-      path: "/api/search?:query",
+      path: "/api/search-results?:query",
       root: true,
       method: "get",
       handler: getAllProducts(),
