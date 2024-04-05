@@ -1,28 +1,41 @@
-import qs from "qs";
-
 const getAllProducts = () => async (req, res, next) => {
   try {
-    const query = req.query.search;
-    console.log(query);
+    // Determine the type of query - whether general or specific or none
+    let query;
+    if (req.query.search) {
+      // Search for the query in the title, category, model, color, pattern, and composition fields
+      query = [
+        [
+          { title: { like: req.query.search } },
+          { "category.name": { like: req.query.search } },
+          { "model.name": { like: req.query.search } },
+          { "color.name": { like: req.query.search } },
+          { "pattern.name": { like: req.query.search } },
+          { "composition.material": { like: req.query.search } },
+        ],
+      ];
+    } else if (req.query) {
+      // The field's property depends on the type as some are either "name" or "material"
+      query = Object.entries(req.query).map(([field, value]) => ({
+        [`${field}.${field === "composition" ? "material" : "name"}`]: {
+          like: value,
+        },
+      }));
+    } else {
+      // Returns all products if no query is provided
+      return;
+    }
 
-    // Get the items
+    // Get the items based on the query
     const docs = await req.payload.find({
       collection: "search", // required
       depth: 4,
       sort: "-createdAt",
       where: {
-        or: [
-          { title: { like: query } },
-          { "category.name": { like: query } },
-          { "model.name": { like: query } },
-          { "color.name": { like: query } },
-          { "pattern.name": { like: query } },
-          { "composition.material": { like: query } },
-        ],
+        or: query,
       },
     });
 
-    console.log(docs.docs);
     // Remove unwanted properties
     const newDocs = docs.docs?.map((doc) => ({
       Article: doc.title,
@@ -36,6 +49,7 @@ const getAllProducts = () => async (req, res, next) => {
       Category: doc.category.name,
     }));
 
+    // Send the filtered response
     res.status(200).send(newDocs);
   } catch {
     throw new Error("Error fetching products");
