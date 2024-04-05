@@ -25,7 +25,7 @@ const getAllProducts = () => async (req, res, next) => {
     }
 
     // Get the items based on the query
-    const docs = await req.payload.find({
+    const oldDocs = await req.payload.find({
       collection: "search", // required
       depth: 4,
       sort: "-createdAt",
@@ -35,7 +35,7 @@ const getAllProducts = () => async (req, res, next) => {
     });
 
     // Remove unwanted properties
-    const newDocs = docs.docs?.map((doc) => ({
+    const newDocs = oldDocs.docs?.map((doc) => ({
       Article: doc.title,
       Media: doc.media.map((media) => media.photo.url),
       Model: doc.model.map((model) => model.name),
@@ -47,8 +47,8 @@ const getAllProducts = () => async (req, res, next) => {
       Category: doc.category.name,
     }));
 
-    // Send the filtered response
-    res.status(200).send(newDocs);
+    // Send the filtered results at the end of the original results
+    res.status(200).send({ ...oldDocs, newDocs });
   } catch {
     throw new Error("Error fetching products");
   }
