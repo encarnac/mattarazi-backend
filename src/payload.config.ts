@@ -17,6 +17,7 @@ import Photos from "./collections/Photos";
 import Models from "./collections/Models";
 import Patterns from "./collections/Patterns";
 import Products from "./collections/Products";
+import { Search, beforeSyncSearch } from "./collections/Search";
 
 import Logo from "./graphics/Logo";
 import Icon from "./graphics/Icon";
@@ -25,6 +26,7 @@ import BeforeLogin from "./components/BeforeLogin";
 import CustomNavBar from "./components/navBar/CustomNavBar";
 import CustomDashboardView from "./views/CustomDashboardView";
 import getAllProducts from "./endpoints/getAllProducts";
+import { before } from "lodash";
 
 const mockModulePath = path.resolve(__dirname, "mocks/emptyObject.js");
 const styleSheet = path.resolve(__dirname, "./stylesheet.css");
@@ -99,7 +101,7 @@ export default buildConfig({
   indexSortableFields: true,
   endpoints: [
     {
-      path: "/api/search?:query",
+      path: "/search?:query",
       root: true,
       method: "get",
       handler: getAllProducts(),
@@ -110,74 +112,15 @@ export default buildConfig({
       enabled: true,
       collections: {
         photos: {
+          disablePayloadAccessControl: false,
           adapter: storageAdapter,
         },
       },
     }),
     search({
       collections: ["products"],
-      searchOverrides: {
-        admin: {
-          useAsTitle: "article",
-          listSearchableFields: [
-            "title",
-            "category.name",
-            "model.name",
-            "color.name",
-            "pattern.name",
-          ],
-          defaultColumns: [
-            "article",
-            "category",
-            "model",
-            "color",
-            "pattern",
-            "createdAt",
-          ],
-        },
-        fields: [
-          {
-            name: "category",
-            type: "relationship",
-            relationTo: "categories",
-            admin: {
-              readOnly: true,
-            },
-          },
-          {
-            name: "model",
-            type: "relationship",
-            relationTo: "models",
-            admin: {
-              readOnly: true,
-            },
-          },
-          {
-            name: "color",
-            type: "relationship",
-            relationTo: "colors",
-            admin: {
-              readOnly: true,
-            },
-          },
-          {
-            name: "pattern",
-            type: "relationship",
-            relationTo: "patterns",
-            admin: {
-              readOnly: true,
-            },
-          },
-        ],
-      },
-      beforeSync: ({ originalDoc, searchDoc }) => ({
-        ...searchDoc,
-        title: originalDoc?.article || "",
-        category: originalDoc?.category || "",
-        model: originalDoc?.model || "",
-        color: originalDoc?.color || "",
-        pattern: originalDoc?.pattern || "",
-      }),
+      searchOverrides: Search,
+      beforeSync: beforeSyncSearch,
     }),
   ],
   db: mongooseAdapter({
